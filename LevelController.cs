@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +12,8 @@ public class LevelController : MonoBehaviour
     public static event Action<MazeSpawner> OnNewMazeSpawner;
 
     public static event Action<int[]> OnTileClicked;
+    
+    public static event Action <int[]> OnPlayerOnNewTile;
 
 
 
@@ -31,6 +33,7 @@ public class LevelController : MonoBehaviour
         int[] pos = { node.Row, node.Column };
         tileInteraction.SetGridPosition(pos);
         tileInteraction.OnButtonClick += OnTileClicked;
+        tileInteraction.OnPlayerEnter += AssignCurrentPlayerTile;
     }
 
     public void CreateMazeButtonPress()
@@ -39,6 +42,11 @@ public class LevelController : MonoBehaviour
         CreateMaze(currentRows, currentColumns);
         OnNewMazeNodes?.Invoke(mazeNodes);
         
+    }
+    
+    void AssignCurrentPlayerTile(int[] tile)
+    {
+        OnPlayerOnNewTile?.Invoke(tile);
     }
 
 
