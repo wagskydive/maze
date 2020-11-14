@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +8,11 @@ using UnityEngine.UI;
 public class TileInteraction : MonoBehaviour
 {
     public event Action<int[]> OnButtonClick;
-
+    
+    public event Action <int[]> OnPlayerEnter;
+    
+    public event Action <int[]> OnPlayerExit;
+    
     MeshRenderer meshRenderer;
 
     int[] gridPosition;
@@ -36,5 +40,21 @@ public class TileInteraction : MonoBehaviour
     {
         OnButtonClick?.Invoke(gridPosition);
     }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        If(other.GetComponent<PlayerController>())
+            {
+              OnPlayerEnter?.Invoke(gridPosition);
+            }
+    } 
+    
+    void OnTriggerExit(Collider other)
+    {
+        If(other.GetComponent<PlayerController>())
+            {
+              OnPlayerExit?.Invoke(gridPosition);
+            }
+    } 
 
 }
