@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +10,26 @@ public class PlayerController : MonoBehaviour
     public event Action OnFireButtonPress;
 
     Rigidbody rbody;
+    
+    int[] currentTile;
+    
+    int[] currentRoute;
 
     private void Start()
     {
         rbody = GetComponent<Rigidbody>();
         LevelController.OnNewMazeSize += ResetPlayer;
+        
+    }
+    
+    void SetCurrentRoute(List<int[]> route)
+    {
+        currentRoute = route;
+    }
+    
+    void AssignCurrentTile(int[] tile)
+    {
+        currentTile = tile;
     }
 
     void ResetPlayer(int rows, int columns)
