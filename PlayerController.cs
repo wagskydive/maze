@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     void AssignCurrentTile(int[] tile)
     {
         currentTile = tile;
+        //if(currentRoute)
     }
 
     void ResetPlayer(int rows, int columns)
