@@ -15,9 +15,17 @@ public class LevelController : MonoBehaviour
     
     public static event Action <int[]> OnPlayerOnNewTile;
 
+    public static event Action OnSetDestinationButtonPress;
+
+    public static event Action OnStartFpsButtonPress;
+
 
 
     public GameObject MazePrefab;
+
+    public GameObject TopCam;
+
+    public GameObject FpsCam;
 
     GameObject currentMaze;
     MazeSpawner spawner;
@@ -42,6 +50,18 @@ public class LevelController : MonoBehaviour
         CreateMaze(currentRows, currentColumns);
         OnNewMazeNodes?.Invoke(mazeNodes);
         
+    }
+
+    public void SetDestinationButtonPress()
+    {
+        OnSetDestinationButtonPress?.Invoke();
+    }
+
+    public void StartFpsButtonPress()
+    {
+        TopCam.SetActive(false);
+        FpsCam.SetActive(true);
+        OnStartFpsButtonPress?.Invoke();
     }
     
     void AssignCurrentPlayerTile(int[] tile)

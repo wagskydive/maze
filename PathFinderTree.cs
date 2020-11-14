@@ -10,6 +10,8 @@ public class PathFinderTree : MonoBehaviour
 
     public static event Action<List<int[]>> OnRouteCreated;
 
+    bool destinationMode;
+
     int rows;
     int columns;
 
@@ -26,14 +28,25 @@ public class PathFinderTree : MonoBehaviour
     {
         LevelController.OnNewMazeNodes += SetupNewMaze;
         LevelController.OnTileClicked += TileClickHandler;
+        LevelController.OnSetDestinationButtonPress += SetDestinationMode;
         levelController = FindObjectOfType<LevelController>();
         
     }
 
+    void SetDestinationMode()
+    {
+        destinationMode = true;
+    }
+
     void TileClickHandler(int[] tile)
     {
-        //levelController.SetAllColors(Color.blue);
-        CreateRoute(tile);
+        
+        if (destinationMode)
+        {
+           
+            CreateRoute(tile);
+        }
+        
     }
 
     void SetupNewMaze(MazeNode[,] nodes)
@@ -102,9 +115,15 @@ public class PathFinderTree : MonoBehaviour
 
 
         }
+
+        destinationMode = false;
+
         Debug.Log("Route takes " + route.Count + " steps.");
 
         OnRouteCreated?.Invoke(route);
+
+
+
 
         return route;
     }

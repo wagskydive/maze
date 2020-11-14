@@ -43,7 +43,7 @@ public class TileInteraction : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
-        If(other.GetComponent<PlayerController>())
+        if(other.GetComponent<PlayerController>())
             {
               OnPlayerEnter?.Invoke(gridPosition);
             }
@@ -51,7 +51,7 @@ public class TileInteraction : MonoBehaviour
     
     void OnTriggerExit(Collider other)
     {
-        If(other.GetComponent<PlayerController>())
+       if(other.GetComponent<PlayerController>())
             {
               OnPlayerExit?.Invoke(gridPosition);
             }

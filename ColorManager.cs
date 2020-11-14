@@ -12,12 +12,13 @@ public class ColorManager : MonoBehaviour
     private void Start()
     {
         LevelController.OnNewMazeSpawner += AssignSpawner;
-        LevelController.OnPlayerOnNewTile +=
+        LevelController.OnPlayerOnNewTile += SetVisitedColor;
         PathFinderTree.OnRouteCreated += ShowRoute;
     }
 
     private void ShowRoute(List<int[]> obj)
     {
+        SetAllColors(Color.blue);
         SetColors(obj, Color.green);
     }
 

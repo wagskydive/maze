@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     
     int[] currentTile;
     
-    int[] currentRoute;
+    List<int[]> currentRoute;
 
     private void Start()
     {
