@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +12,7 @@ public class ColorManager : MonoBehaviour
     private void Start()
     {
         LevelController.OnNewMazeSpawner += AssignSpawner;
+        LevelController.OnPlayerOnNewTile +=
         PathFinderTree.OnRouteCreated += ShowRoute;
     }
 
@@ -43,6 +44,11 @@ public class ColorManager : MonoBehaviour
         {
             SetFloorTileColor(tiles[i][0], tiles[i][1], col);
         }
+    }
+    
+    public void SetVisitedColor(int[] tile)
+    {
+        SetFloorTileColor(tile[0],tile[1],Color.cyan);
     }
 
     public void SetFloorTileColor(int row, int column, Color color)
