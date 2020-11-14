@@ -15,6 +15,8 @@ public class JumpPowerUp : MonoBehaviour
         }
     }
 
+
+        //blA
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<PlayerController>())
