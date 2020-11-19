@@ -13,6 +13,12 @@ public class TileInteraction : MonoBehaviour
     
     public event Action <int[]> OnPlayerExit;
     
+    public bool isVisitedByPlayer { get; private set;} 
+    
+    void SetVisited()
+    {
+      isVisitedByPlayer = true;
+    }
     MeshRenderer meshRenderer;
 
     int[] gridPosition;
@@ -43,15 +49,19 @@ public class TileInteraction : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<PlayerController>())
+        If(other.GetComponent<PlayerController>())
             {
+              if(!isVisitedByPlayer)
+              {
+                SetVisited();
+              }
               OnPlayerEnter?.Invoke(gridPosition);
             }
     } 
     
     void OnTriggerExit(Collider other)
     {
-       if(other.GetComponent<PlayerController>())
+        If(other.GetComponent<PlayerController>())
             {
               OnPlayerExit?.Invoke(gridPosition);
             }
